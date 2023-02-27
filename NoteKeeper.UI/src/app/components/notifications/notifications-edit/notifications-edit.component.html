@@ -1,0 +1,36 @@
+<h1 class="font-bold mb-2 text-[40px]">Edit Notification</h1>
+
+<form [formGroup]="notificationFormEdit" (ngSubmit)="updateNotification()">
+  <input
+    type="text"
+    class="border w-full py-2 px-4 mb-2"
+    placeholder="Notification Text"
+    formControlName="text"
+    appFocus
+    name="notificationText"
+    [(ngModel)]="notificationDetails.notificationText"
+  />
+
+  <input
+    type="datetime-local"
+    class="border w-full py-2 px-4 mb-2"
+    placeholder="Date"
+    formControlName="date"
+    name="completionDate"
+    [(ngModel)]="notificationDetails.completionDate"
+  />
+
+  <div>
+    <button type="submit" class="py-2 px-4 mr-2 bg-green-600 text-white">
+      Save Changes
+    </button>
+
+    <button
+      type="button"
+      class="py-2 px-4 mr-2 bg-red-600 text-white"
+      (click)="deleteNotification(notificationDetails.notificationID)"
+    >
+      Delete
+    </button>
+  </div>
+</form>

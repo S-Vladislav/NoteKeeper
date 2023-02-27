@@ -1,0 +1,52 @@
+<div class="text-center">
+  <h1 class="font-bold mb-2 text-[40px]">Notifications</h1>
+  <p>
+    <button
+      class="rounded-full bg-blue-700 text-white bottom-5 py-2 px-4 mb-4"
+      (click)="modalService.open()"
+    >
+      Add New Notification
+    </button>
+  </p>
+</div>
+
+<div class="table-wrapper">
+  <table class="content-table">
+    <thead>
+      <tr>
+        <th>Notification</th>
+        <th>Date</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let notification of notifications">
+        <td>{{ notification.notificationText }}</td>
+        <td>
+          {{ notification.completionDate | date : "medium" }}
+        </td>
+        <td>
+          <a
+            [routerLink]="[
+              '/notifications',
+              'edit',
+              notification.notificationID
+            ]"
+          >
+            <button type="button" class="py-2 px-4 mr-2 bg-blue-600 text-white">
+              Edit
+            </button>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-notifications-modal
+  *ngIf="modalService.isVisible$ | async"
+  notificationTitle="Create New Notification"
+>
+  <app-notifications-create (notificationCreated)="refreshNotifications()">
+  </app-notifications-create>
+</app-notifications-modal>

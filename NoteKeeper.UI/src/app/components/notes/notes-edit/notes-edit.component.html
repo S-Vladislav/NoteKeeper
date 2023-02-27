@@ -1,0 +1,36 @@
+<h1 class="font-bold mb-2 text-[40px]">Edit Note</h1>
+
+<form [formGroup]="notesFormEdit" (ngSubmit)="updateNote()">
+  <input
+    type="text"
+    class="border w-full py-2 px-4 mb-2"
+    placeholder="Note Header"
+    formControlName="header"
+    appFocus
+    name="noteHeader"
+    [(ngModel)]="noteDetails.noteHeader"
+  />
+
+  <input
+    type="text"
+    class="border w-full py-2 px-4 mb-2"
+    placeholder="Note Text"
+    formControlName="text"
+    name="noteText"
+    [(ngModel)]="noteDetails.noteText"
+  />
+
+  <div>
+    <button type="submit" class="py-2 px-4 mr-2 bg-green-600 text-white">
+      Save Changes
+    </button>
+
+    <button
+      type="button"
+      class="py-2 px-4 mr-2 bg-red-600 text-white"
+      (click)="deleteNote(noteDetails.noteId)"
+    >
+      Delete
+    </button>
+  </div>
+</form>

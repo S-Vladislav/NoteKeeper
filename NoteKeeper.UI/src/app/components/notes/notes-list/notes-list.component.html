@@ -1,0 +1,45 @@
+<div class="text-center">
+  <h1 class="font-bold mb-2 text-[40px]">Notes</h1>
+  <p>
+    <button
+      class="rounded-full bg-blue-700 text-white bottom-5 py-2 px-4 mb-4"
+      (click)="modalNoteService.open()"
+    >
+      Add New Note
+    </button>
+  </p>
+</div>
+
+<div class="table-wrapper">
+  <table class="content-table">
+    <thead>
+      <tr>
+        <th>Note Header</th>
+        <th>Note Text</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let note of notes">
+        <td>{{ note.noteHeader | titlecase }}</td>
+        <td>
+          {{ note.noteText }}
+        </td>
+        <td>
+          <a [routerLink]="['/notes', 'edit', note.noteId]">
+            <button type="button" class="py-2 px-4 mr-2 bg-blue-600 text-white">
+              Edit
+            </button>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-notes-modal
+  *ngIf="modalNoteService.isNoteVisible$ | async"
+  noteTitle="Create New Note"
+>
+  <app-notes-create (noteCreated)="refreshNotes()"></app-notes-create>
+</app-notes-modal>

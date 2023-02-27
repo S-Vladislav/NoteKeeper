@@ -1,0 +1,51 @@
+<form [formGroup]="noteForm" (ngSubmit)="submitNote()">
+  <input
+    type="text"
+    class="border w-full py-2 px-4 mb-2"
+    placeholder="Note Header"
+    formControlName="text"
+    appFocus
+    name="noteHeader"
+    [(ngModel)]="addNoteRequest.noteHeader"
+  />
+
+  <input
+    type="text"
+    class="border w-full py-2 px-4 mb-2"
+    placeholder="Note Text"
+    formControlName="text"
+    name="noteText"
+    [(ngModel)]="addNoteRequest.noteText"
+  />
+
+  <!--Input errors checking -->
+
+  <p
+    class="text-red-600 font-medium mb-2"
+    *ngIf="text.errors?.minlength || text.errors?.maxlength"
+  >
+    Enter Between 3 And 30 Symbols. Currently: {{ text.value.length }}
+  </p>
+
+  <p class="text-red-600 font-medium mb-2" *ngIf="text.errors?.required">
+    Note Header And Text Fields Cannot Be Empty
+  </p>
+
+  <div>
+    <button
+      type="submit"
+      class="py-2 px-4 mr-2 bg-blue-600 text-white"
+      [disabled]="noteForm.invalid"
+    >
+      Create
+    </button>
+
+    <button
+      type="submit"
+      class="py-2 px-4 mr-2 bg-blue-600 text-white"
+      (click)="modalNoteService.close()"
+    >
+      Close
+    </button>
+  </div>
+</form>

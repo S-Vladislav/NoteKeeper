@@ -1,0 +1,46 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* html, body { height: 100%; }  body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+
+body {
+  background-color: rgb(169, 169, 169);
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* overriding mat-tab styles */
+
+/* Styles for tab labels */
+app-tabs .mat-tab-label {
+  min-width: 25px !important;
+  padding: 5px;
+  background-color: transparent;
+  font-weight: bold;
+  font-size: 30px;
+  flex: auto;
+}
+
+/* Styles for the active tab label */
+app-tabs .mat-tab-label.mat-tab-label-active {
+  min-width: 25px !important;
+  padding: 5px;
+  background-color: transparent;
+  color: green;
+  font-weight: 700;
+}
+
+/* Styles for the ink bar */
+app-tabs .mat-ink-bar {
+  background-color: green;
+}
+
+/* Styles for tab's body content */
+app-tabs .mat-tab-body-content {
+  padding-top: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* chips */

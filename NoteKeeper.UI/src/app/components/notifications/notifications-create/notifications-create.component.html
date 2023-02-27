@@ -1,0 +1,51 @@
+<form [formGroup]="notificationForm" (ngSubmit)="submitNotification()">
+  <input
+    type="text"
+    class="border w-full py-2 px-4 mb-2"
+    placeholder="Notification Text"
+    formControlName="text"
+    appFocus
+    name="notificationText"
+    [(ngModel)]="addNotificationRequest.notificationText"
+  />
+
+  <input
+    type="datetime-local"
+    class="border w-full py-2 px-4 mb-2"
+    placeholder="Date"
+    formControlName="date"
+    name="completionDate"
+    [(ngModel)]="addNotificationRequest.completionDate"
+  />
+
+  <!--Input errors checking -->
+
+  <p
+    class="text-red-600 font-medium mb-2"
+    *ngIf="text.errors?.minlength || text.errors?.maxlength"
+  >
+    Enter Between 3 And 30 Symbols. Currently: {{ text.value.length }}
+  </p>
+
+  <p class="text-red-600 font-medium mb-2" *ngIf="text.errors?.required">
+    Notification Text Field Cannot Be Empty
+  </p>
+
+  <div>
+    <button
+      type="submit"
+      class="py-2 px-4 mr-2 bg-blue-600 text-white"
+      [disabled]="notificationForm.invalid"
+    >
+      Create
+    </button>
+
+    <button
+      type="submit"
+      class="py-2 px-4 mr-2 bg-blue-600 text-white"
+      (click)="modalService.close()"
+    >
+      Close
+    </button>
+  </div>
+</form>

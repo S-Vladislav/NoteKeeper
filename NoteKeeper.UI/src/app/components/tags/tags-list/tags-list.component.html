@@ -1,0 +1,22 @@
+<div class="text-center">
+  <h1 class="font-bold mb-2 text-[40px]">Tags</h1>
+</div>
+
+<mat-form-field class="tags-chip-list" appearance="fill">
+  <mat-label class="tags-chip-label">List Of Created Tags</mat-label>
+  <mat-chip-list #chipList aria-label="Fruit selection">
+    <mat-chip *ngFor="let tag of tags" (removed)="remove(tag)">
+      {{ tag.tagName }}
+      <button matChipRemove>
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip>
+    <input
+      placeholder="New tag..."
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="addOnBlur"
+      (matChipInputTokenEnd)="add($event)"
+    />
+  </mat-chip-list>
+</mat-form-field>
